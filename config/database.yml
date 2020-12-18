@@ -1,0 +1,18 @@
+# PostgreSQL. Versions 9.3 and up are supported.
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: e_learning_platform_development
+  username: turvitan
+  password: Nilochka
+
+production:
+  <<: *default
+  database: e_learning_platform_production
+  username: e_learning_platform
+  password: <%= ENV['E_LEARNING_PLATFORM_DATABASE_PASSWORD'] %>
