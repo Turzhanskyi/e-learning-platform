@@ -8,6 +8,7 @@ ruby '2.7.2'
 gem 'bootsnap', '1.5.1', require: false
 gem 'devise', '4.7.3'
 gem 'faker', '2.15.1'
+gem 'friendly_id', '5.4.1'
 gem 'haml-rails', '2.0.1'
 gem 'jbuilder', '2.10.1'
 gem 'pg', '1.2.3'
