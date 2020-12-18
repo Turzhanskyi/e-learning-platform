@@ -8,6 +8,8 @@ AllCops:
     - "node_modules/**/*"
     - "vendor/**/*"
     - "bin/**"
+    - "config/initializers/simple_form.rb"
+    - "config/initializers/simple_form_bootstrap.rb"
   NewCops: enable
 
 Lint/DuplicateBranch: # (new in 1.3)
