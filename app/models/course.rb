@@ -14,4 +14,14 @@ class Course < ApplicationRecord
   def to_s
     title
   end
+
+  LANGUAGES = %i[English Ukrainian Russian Polish].freeze
+  def self.languages
+    LANGUAGES.map { |language| [language, language] }
+  end
+
+  LEVELS = %i[Beginner Intermediate Advanced].freeze
+  def self.levels
+    LEVELS.map { |level| [level, level] }
+  end
 end

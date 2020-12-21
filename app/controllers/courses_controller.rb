@@ -7,7 +7,8 @@ class CoursesController < ApplicationController
     @courses = if params[:title]
                  Course.where('title ILIKE ?', "%#{params[:title]}%") # case-insensitive
                else
-                 Course.all
+                 @q = Course.ransack(params[:q])
+                 @courses = @q.result.includes(:user)
                end
   end
 
