@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/activity'
   resources :courses
-  resources :users, only: [:index]
+  resources :users, only: %i[index edit show update]
 end
