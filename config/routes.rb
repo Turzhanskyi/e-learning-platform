@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/activity'
   resources :courses
+  resources :lessons
   resources :users, only: %i[index edit show update]
 end
