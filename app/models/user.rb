@@ -10,6 +10,9 @@ class User < ApplicationRecord
 
   rolify
 
+  extend FriendlyId
+  friendly_id :email, use: :slugged
+
   def to_s
     email
   end
