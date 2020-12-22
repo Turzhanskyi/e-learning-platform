@@ -7,4 +7,11 @@ class Lesson < ApplicationRecord
 
   extend FriendlyId
   friendly_id :title, use: :slugged
+
+  include PublicActivity::Model
+  tracked owner: proc { |controller, _model| controller.current_user }
+
+  def to_s
+    title
+  end
 end
