@@ -6,6 +6,8 @@
     = f.input :title
     = f.label :content
     = f.rich_text_area :content
+    %small= f.error :content, class: 'text-danger'
+    %p
 
   .form-actions
     = f.button :submit
