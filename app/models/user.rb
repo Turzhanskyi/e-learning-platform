@@ -11,10 +11,14 @@ class User < ApplicationRecord
   rolify
 
   extend FriendlyId
-  friendly_id :email, use: :slugged
+  friendly_id :email_or_id, use: :slugged
 
-  def to_s
-    email
+  def email_or_id
+    if email.present?
+      email
+    else
+      id
+    end
   end
 
   def username

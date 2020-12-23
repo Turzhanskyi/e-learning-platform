@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
 User.create!(email: 'admin@example.com', password: '123456', password_confirmation: '123456',
-             confirmed_at: Faker::Date.in_date_period)
+             confirmed_at: Time.now)
+User.create!(email: 'student@example.com', password: '123456', password_confirmation: '123456',
+             confirmed_at: Time.now)
 
+user = User.find(1)
+user.add_role :admin
+
+PublicActivity.enabled = false
 30.times do
   Course.create!([{
                    title: Faker::Educator.course_name,
@@ -14,3 +20,7 @@ User.create!(email: 'admin@example.com', password: '123456', password_confirmati
                    price: Faker::Number.between(from: 1000, to: 20_000)
                  }])
 end
+PublicActivity.enabled = true
+
+User.find_each(&:save)
+Course.find_each(&:save)
