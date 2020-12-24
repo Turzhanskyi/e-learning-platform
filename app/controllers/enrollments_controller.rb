@@ -6,6 +6,7 @@ class EnrollmentsController < ApplicationController
 
   def index
     @enrollments = Enrollment.all
+    authorize @enrollments
   end
 
   def show; end
@@ -14,7 +15,9 @@ class EnrollmentsController < ApplicationController
     @enrollment = Enrollment.new
   end
 
-  def edit; end
+  def edit
+    authorize @enrollments
+  end
 
   def create
     if @course.price.positive?
@@ -27,6 +30,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def update
+    authorize @enrollments
     respond_to do |format|
       if @enrollment.update(enrollment_params)
         format.html { redirect_to @enrollment, notice: 'Enrollment was successfully updated.' }
@@ -39,6 +43,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def destroy
+    authorize @enrollments
     @enrollment.destroy
     respond_to do |format|
       format.html { redirect_to enrollments_url, notice: 'Enrollment was successfully destroyed.' }
