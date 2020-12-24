@@ -7,6 +7,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
   has_many :courses
+  has_many :enrollments
+
+  validate :must_have_a_role, on: :update
+
+  after_create :assign_default_role
 
   rolify
 
@@ -25,7 +30,9 @@ class User < ApplicationRecord
     email.split(/@/).first
   end
 
-  after_create :assign_default_role
+  def to_s
+    email
+  end
 
   def assign_default_role
     if User.count == 1
@@ -41,8 +48,6 @@ class User < ApplicationRecord
   def online?
     updated_at > 2.minutes.ago
   end
-
-  validate :must_have_a_role, on: :update
 
   private
 
