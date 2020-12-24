@@ -20,6 +20,10 @@ class Course < ApplicationRecord
     title
   end
 
+  def bought(user)
+    enrollments.where(user_id: [user.id], course_id: [id].empty?)
+  end
+
   LANGUAGES = %i[English Ukrainian Russian Polish].freeze
   def self.languages
     LANGUAGES.map { |language| [language, language] }

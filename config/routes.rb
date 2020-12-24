@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'home/activity'
   resources :courses do
     resources :lessons
+    resources :enrollments, only: %i[new create]
   end
   resources :users, only: %i[index edit show update]
   resources :enrollments
