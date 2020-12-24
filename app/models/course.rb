@@ -21,7 +21,7 @@ class Course < ApplicationRecord
   end
 
   def bought(user)
-    enrollments.where(user_id: [user.id], course_id: [id].empty?)
+    enrollments.where(user_id: [user.id], course_id: [id]).empty?
   end
 
   LANGUAGES = %i[English Ukrainian Russian Polish].freeze
