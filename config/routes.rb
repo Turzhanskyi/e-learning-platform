@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get 'home/index'
-  get 'home/activity'
+  get 'activity', to: 'home#activity'
   resources :courses do
     resources :lessons
     resources :enrollments, only: %i[new create]
