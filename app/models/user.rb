@@ -6,10 +6,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
+  validate :must_have_a_role, on: :update
+
   has_many :courses
   has_many :enrollments
-
-  validate :must_have_a_role, on: :update
 
   after_create :assign_default_role
 
@@ -28,10 +28,6 @@ class User < ApplicationRecord
 
   def username
     email.split(/@/).first
-  end
-
-  def to_s
-    email
   end
 
   def assign_default_role
