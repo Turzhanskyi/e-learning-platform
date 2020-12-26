@@ -14,3 +14,5 @@ import "@fortawesome/fontawesome-free/css/all"
 require("stylesheets/application.scss")
 require("trix")
 require("@rails/actiontext")
+require("chartkick")
+require("chart.js")
