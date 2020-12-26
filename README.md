@@ -4,6 +4,6 @@
 ### admin
 * email: admin@example.com
 * password: 123456
-###student
+### student
 * email: student@example.com
 * password: 123456
