@@ -17,11 +17,11 @@ PublicActivity.enabled = false
                    short_description: Faker::Quote.famous_last_words,
                    language: Faker::ProgrammingLanguage.name,
                    level: 'Beginner',
-                   price: Faker::Number.between(from: 1000, to: 20_000)
+                   price: Faker::Number.between(from: 0, to: 20_000)
                  }])
 end
 
-100.times do
+500.times do
   Lesson.create!([{
                    title: Faker::Commerce.product_name,
                    content: Faker::Marketing.buzzwords,

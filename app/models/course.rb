@@ -6,8 +6,10 @@ class Course < ApplicationRecord
   validates :description, presence: true, length: { minimum: 5 }
 
   belongs_to :user, counter_cache: true
+  # rails console:   User.find_each { |user| User.reset_counters(user.id, :courses)
   has_many :lessons, dependent: :destroy
   has_many :enrollments
+  has_many :user_lessons, through: :lessons
 
   scope :latest, -> { limit(3).order(created_at: :desc) }
   scope :top_rated, -> { limit(3).order(average_rating: :desc, created_at: :desc) }
@@ -35,6 +37,10 @@ class Course < ApplicationRecord
     else
       update_column :average_rating, 0
     end
+  end
+
+  def progress(user)
+    user_lessons.where(user: user).count / lessons_count.to_f * 100 unless lessons_count.zero?
   end
 
   LANGUAGES = %i[English Ukrainian Russian Polish].freeze
