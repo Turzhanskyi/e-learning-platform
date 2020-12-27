@@ -58,3 +58,7 @@ Naming/AccessorMethodName:
   Enabled: false
 Naming/PredicateName:
   Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false

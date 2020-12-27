@@ -2,8 +2,9 @@
 
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  before_action :set_global_variables, if: :user_signed_in?
-  after_action :user_activity
+  protect_from_forgery
+
+  after_action :user_activity, if: :user_signed_in?
 
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -12,6 +13,7 @@ class ApplicationController < ActionController::Base
 
   include Pagy::Backend
 
+  before_action :set_global_variables, if: :user_signed_in?
   def set_global_variables
     @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search) # navbar search
   end
