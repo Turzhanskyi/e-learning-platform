@@ -6,12 +6,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.2'
 
 gem 'bootsnap', '1.5.1', require: false
-gem 'chartkick'
+gem 'chartkick', '3.4.2'
 gem 'devise', '4.7.3'
 gem 'exception_notification', '4.4.3'
 gem 'faker', '2.15.1'
 gem 'friendly_id', '5.4.1'
-gem 'groupdate'
+gem 'groupdate', '5.2.1'
 gem 'haml-rails', '2.0.1'
 gem 'jbuilder', '2.10.1'
 gem 'pagy', '3.10.0'
@@ -34,6 +34,7 @@ end
 
 group :development do
   gem 'listen', '3.3.3'
+  gem 'rails-erd', '1.6.0' # sudo apt-get install graphviz; bundle exec erd
   gem 'spring', '2.1.1'
   gem 'spring-watcher-listen', '2.0.1'
   gem 'web-console', '4.1.0'
