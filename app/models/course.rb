@@ -47,12 +47,12 @@ class Course < ApplicationRecord
     user_lessons.where(user: user).count / lessons_count.to_f * 100 unless lessons_count.zero?
   end
 
-  LANGUAGES = %i[English Ukrainian Russian Polish].freeze
+  LANGUAGES = %i[English Ukrainian Russian Polish Spanish].freeze
   def self.languages
     LANGUAGES.map { |language| [language, language] }
   end
 
-  LEVELS = %i[Beginner Intermediate Advanced].freeze
+  LEVELS = [:"All levels", :Beginner, :Intermediate, :Advanced].freeze
   def self.levels
     LEVELS.map { |level| [level, level] }
   end
