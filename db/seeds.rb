@@ -9,7 +9,7 @@ end
 
 if User.find_by_email('teacher@example.com').nil?
   teacher = User.create!(email: 'teacher@example.com', password: '123456',
-                                password_confirmation: '123456', confirmed_at: Time.now)
+                         password_confirmation: '123456', confirmed_at: Time.now)
   teacher.add_role(:teacher) unless teacher.has_role?(:teacher)
 end
 
