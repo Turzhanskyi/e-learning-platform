@@ -1,12 +1,12 @@
 - content_for :title do
   e-learning
-  \|
+  \| 
   Online Courses - Learn Anything, On Your Schedule
 
 .jumbotron
   .display-4
     What do you want to learn today?
-
+  
   .p-4
 
   - if current_user
@@ -68,7 +68,7 @@
 .text-right
   = link_to 'More popular courses', courses_path(courses_search: {s: 'enrollments_count desc'})
 %hr
-%h2
+%h2 
   .fa.fa-star
   Top rated courses
 .card-columns
@@ -78,7 +78,7 @@
   = link_to 'Best rated courses', courses_path(courses_search: {s: 'average_rating desc'})
 
 %hr
-%h2
+%h2 
   .fa.fa-clock
   Latest courses
 .card-columns
@@ -88,7 +88,7 @@
   = link_to 'More new courses', courses_path(courses_search: {s: 'created_at desc'})
 
 %hr
-%h2
+%h2 
   .fa.fa-comment
   What our students have to say
 .card-columns

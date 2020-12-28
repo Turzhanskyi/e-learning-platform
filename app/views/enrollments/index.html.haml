@@ -1,6 +1,6 @@
 - content_for :title do
   e-learning
-  \|
+  \| 
   = action_name.humanize
   enrollments
 
@@ -20,8 +20,7 @@
   = f.search_field :price_eq, placeholder: 'price'
   = f.search_field :rating_eq, placeholder: 'rating'
   = f.submit
-  = link_to @ransack_path, class: 'btn btn-sm bt-secondary' do
-    .fa.fa-sync
+= link_to 'refresh', @ransack_path
 
 .table-responsive
   %table.table.table-bordered.table-striped.table-sm
@@ -34,24 +33,24 @@
         %th
           = sort_link(@q, :course_title, "Course")
         %th Teacher
-        %th
+        %th 
           = sort_link(@q, :price)
         %th
           = sort_link(@q, :updated_at)
           .row
           .text-warning.fa.fa-clock
           Reviewed on
-        %th
+        %th 
           = sort_link(@q, :rating)
           .text-warning.fa.fa-star
-        %th
+        %th 
           .text-warning.fa.fa-comment
           Review
         %th Progress
         %th
         %th
         %th
-
+  
     %tbody
       - @enrollments.each do |enrollment|
         %tr
@@ -73,6 +72,5 @@
           %td
             - if policy(enrollment).destroy?
               = link_to 'Delete Enrollment', enrollment, method: :delete, data: { confirm: 'Are you sure?' }
-
-!= pagy_bootstrap_combo_nav_js(@pagy)
+!= pagy_bootstrap_nav(@pagy)
 %br

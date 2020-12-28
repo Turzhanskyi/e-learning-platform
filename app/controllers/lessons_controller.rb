@@ -27,7 +27,6 @@ class LessonsController < ApplicationController
     @course = Course.friendly.find(params[:course_id])
     @lesson.course_id = @course.id
     authorize @lesson
-
     respond_to do |format|
       if @lesson.save
         format.html { redirect_to course_lesson_path(@course, @lesson), notice: 'Lesson was successfully created.' }

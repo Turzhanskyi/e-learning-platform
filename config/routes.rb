@@ -2,13 +2,15 @@
 
 Rails.application.routes.draw do
   devise_for :users
-  root 'home#index'
 
+  root 'home#index'
   get 'home/index'
   get 'activity', to: 'home#activity'
   get 'analytics', to: 'home#analytics'
 
-  resources :users, only: %i[index edit show update]
+  resources :enrollments do
+    get :my, on: :collection
+  end
 
   resources :courses do
     get :purchased, :pending_review, :created, :unapproved, on: :collection
@@ -20,9 +22,7 @@ Rails.application.routes.draw do
     resources :enrollments, only: %i[new create]
   end
 
-  resources :enrollments do
-    get :my_students, on: :collection
-  end
+  resources :users, only: %i[index edit show update]
 
   namespace :charts do
     get 'users_per_day'

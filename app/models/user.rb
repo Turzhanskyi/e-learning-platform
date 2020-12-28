@@ -2,19 +2,25 @@
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :lockable, :timeoutable, and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
   validate :must_have_a_role, on: :update
 
+  rolify
+
   has_many :courses, dependent: :nullify
   has_many :enrollments, dependent: :nullify
   has_many :user_lessons, dependent: :nullify
 
-  after_create :assign_default_role
+  def to_s
+    email
+  end
 
-  rolify
+  def username
+    email.split(/@/).first
+  end
 
   extend FriendlyId
   friendly_id :email_or_id, use: :slugged
@@ -27,13 +33,7 @@ class User < ApplicationRecord
     end
   end
 
-  def to_s
-    email
-  end
-
-  def username
-    email.split(/@/).first
-  end
+  after_create :assign_default_role
 
   def assign_default_role
     if User.count == 1

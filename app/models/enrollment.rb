@@ -12,13 +12,16 @@ class Enrollment < ApplicationRecord
   validate :cant_subscribe_to_own_course # user can't create a subscription if course.user == current_user.id
 
   belongs_to :course, counter_cache: true
-  # rails console:   Course.find_each { |course| Course.reset_counters(course.id, :enrollments) }
+  # Course.find_each { |course| Course.reset_counters(course.id, :enrollments) }
   belongs_to :user, counter_cache: true
-  # rails console:   User.find_each { |user| User.reset_counters(user.id, :enrollments) }
+  # User.find_each { |user| User.reset_counters(user.id, :enrollments) }
 
   scope :pending_review, -> { where(rating: [0, nil, ''], review: [0, nil, '']) }
   scope :reviewed, -> { where.not(review: [0, nil, '']) }
   scope :latest_good_reviews, -> { order(rating: :desc, created_at: :desc).limit(3) }
+
+  include PublicActivity::Model
+  tracked owner: proc { |controller, _model| controller.current_user }
 
   extend FriendlyId
   friendly_id :to_s, use: :slugged

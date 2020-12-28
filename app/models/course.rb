@@ -6,7 +6,7 @@ class Course < ApplicationRecord
   validates :description, presence: true, length: { minimum: 5 }
 
   belongs_to :user, counter_cache: true
-  # rails console:   User.find_each { |user| User.reset_counters(user.id, :courses)
+  # User.find_each { |user| User.reset_counters(user.id, :courses) }
   has_many :lessons, dependent: :destroy
   has_many :enrollments, dependent: :restrict_with_error
   has_many :user_lessons, through: :lessons
@@ -24,29 +24,6 @@ class Course < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  include PublicActivity::Model
-  tracked owner: proc { |controller, _model| controller.current_user }
-
-  def to_s
-    title
-  end
-
-  def bought(user)
-    enrollments.where(user_id: [user.id], course_id: [id]).empty?
-  end
-
-  def update_rating
-    if enrollments.any? && enrollments.where.not(rating: nil).any?
-      update_column :average_rating, enrollments.average(:rating).round(2).to_f
-    else
-      update_column :average_rating, 0
-    end
-  end
-
-  def progress(user)
-    user_lessons.where(user: user).count / lessons_count.to_f * 100 unless lessons_count.zero?
-  end
-
   LANGUAGES = %i[English Ukrainian Russian Polish Spanish].freeze
   def self.languages
     LANGUAGES.map { |language| [language, language] }
@@ -55,5 +32,28 @@ class Course < ApplicationRecord
   LEVELS = [:"All levels", :Beginner, :Intermediate, :Advanced].freeze
   def self.levels
     LEVELS.map { |level| [level, level] }
+  end
+
+  include PublicActivity::Model
+  tracked owner: proc { |controller, _model| controller.current_user }
+
+  def to_s
+    title
+  end
+
+  def bought(user)
+    enrollments.where(user_id: [user.id], course_id: [id]).any?
+  end
+
+  def progress(user)
+    user_lessons.where(user: user).count / lessons_count.to_f * 100 unless lessons_count.zero?
+  end
+
+  def update_rating
+    if enrollments.any? && enrollments.where.not(rating: nil).any?
+      update_column :average_rating, enrollments.average(:rating).round(2).to_f
+    else
+      update_column :average_rating, 0
+    end
   end
 end

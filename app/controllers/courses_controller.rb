@@ -6,14 +6,12 @@ class CoursesController < ApplicationController
 
   def index
     @ransack_path = courses_path
-
     @ransack_courses = Course.published.approved.ransack(params[:courses_search], search_key: :courses_search)
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
   end
 
   def purchased
     @ransack_path = purchased_courses_path
-
     @ransack_courses = Course.joins(:enrollments).where(enrollments: { user: current_user }).ransack(
       params[:courses_search], search_key: :courses_search
     )
@@ -23,7 +21,6 @@ class CoursesController < ApplicationController
 
   def pending_review
     @ransack_path = pending_review_courses_path
-
     @ransack_courses = Course.joins(:enrollments).merge(Enrollment.pending_review.where(user: current_user)).ransack(
       params[:courses_search], search_key: :courses_search
     )
@@ -33,7 +30,6 @@ class CoursesController < ApplicationController
 
   def created
     @ransack_path = created_courses_path
-
     @ransack_courses = Course.where(user: current_user).ransack(params[:courses_search], search_key: :courses_search)
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
     render 'index'
@@ -41,7 +37,6 @@ class CoursesController < ApplicationController
 
   def unapproved
     @ransack_path = unapproved_courses_path
-
     @ransack_courses = Course.unapproved.ransack(params[:courses_search], search_key: :courses_search)
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
     render 'index'
@@ -49,21 +44,18 @@ class CoursesController < ApplicationController
 
   def approve
     authorize @course, :approve?
-
     @course.update_attribute(:approved, true)
     redirect_to @course, notice: 'Course approved and visible!'
   end
 
   def unapprove
     authorize @course, :approve?
-
     @course.update_attribute(:approved, false)
     redirect_to @course, notice: 'Course upapproved and hidden!'
   end
 
   def show
     authorize @course
-
     @lessons = @course.lessons
     @enrollments_with_review = @course.enrollments.reviewed
   end
@@ -125,6 +117,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:title, :description, :short_description, :price, :published, :language, :level)
+    params.require(:course).permit(:title, :description, :short_description, :price,
+                                   :published, :language, :level)
   end
 end
