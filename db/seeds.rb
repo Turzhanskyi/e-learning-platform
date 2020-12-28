@@ -7,29 +7,41 @@ if User.find_by_email('admin@example.com').nil?
   admin.add_role(:admin) unless admin.has_role?(:admin)
 end
 
-if User.find_by_email('studentteacher@example.com').nil?
-  studentteacher = User.create!(email: 'studentteacher@example.com', password: '123456',
+if User.find_by_email('teacher@example.com').nil?
+  teacher = User.create!(email: 'teacher@example.com', password: '123456',
                                 password_confirmation: '123456', confirmed_at: Time.now)
-  # studentteacher.skip_confirmation!
-  studentteacher.add_role(:teacher) unless studentteacher.has_role?(:teacher)
-  studentteacher.add_role(:student) unless studentteacher.has_role?(:student)
+  teacher.add_role(:teacher) unless teacher.has_role?(:teacher)
 end
 
 if User.find_by_email('student@example.com').nil?
   student = User.create!(email: 'student@example.com', password: '123456', password_confirmation: '123456',
                          confirmed_at: Time.now)
-  # student.skip_confirmation!
   student.add_role(:student) unless student.has_role?(:student)
 end
 
 PublicActivity.enabled = false
 
-10.times do
+5.times do
   Course.create!([{
                    title: Faker::Educator.course_name,
                    short_description: Faker::Quote.famous_last_words,
                    description: Faker::TvShows::GameOfThrones.quote,
                    user: User.find_by(email: 'admin@example.com'),
+                   language: Faker::ProgrammingLanguage.name,
+                   level: 'Beginner',
+                   # price: Faker::Number.between(from: 1000, to: 20000),
+                   price: 0,
+                   approved: true,
+                   published: true
+                 }])
+end
+
+5.times do
+  Course.create!([{
+                   title: Faker::Educator.course_name,
+                   short_description: Faker::Quote.famous_last_words,
+                   description: Faker::TvShows::GameOfThrones.quote,
+                   user: User.find_by(email: 'teacher@example.com'),
                    language: Faker::ProgrammingLanguage.name,
                    level: 'Beginner',
                    # price: Faker::Number.between(from: 1000, to: 20000),
@@ -49,11 +61,6 @@ Course.all.each do |course|
   end
 
   Enrollment.create!([{
-                       user: User.find_by(email: 'studentteacher@example.com'),
-                       course: course
-                     }])
-
-  Enrollment.create!([{
                        user: User.find_by(email: 'student@example.com'),
                        course: course,
                        price: course.price
@@ -61,16 +68,3 @@ Course.all.each do |course|
 end
 
 PublicActivity.enabled = true
-
-# # add friendly_id
-# User.find_each(&:save)
-# Course.find_each(&:save)
-# Lesson.find_each(&:save)
-# Enrollment.find_each(&:save)
-#
-# # reset counter_cache
-# Course.find_each { |course| Course.reset_counters(course.id, :enrollments) }
-# Course.find_each { |course| Course.reset_counters(course.id, :lessons) }
-# User.find_each { |u| User.reset_counters(u.id, :courses) }
-# User.find_each { |u| User.reset_counters(u.id, :enrollments) }
-# User.find_each { |u| User.reset_counters(u.id, :enrollments) }
