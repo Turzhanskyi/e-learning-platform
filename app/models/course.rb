@@ -4,6 +4,8 @@ class Course < ApplicationRecord
   validates :title, :description, :short_description, :language, :price, :level, presence: true
   validates :description, length: { minimum: 5 }
   validates :short_description, length: { maximum: 300 }
+  validates :title, uniqueness: true, length: { maximum: 70 }
+  validates :price, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :user, counter_cache: true
   # User.find_each { |user| User.reset_counters(user.id, :courses) }
@@ -22,7 +24,7 @@ class Course < ApplicationRecord
   has_rich_text :description
 
   has_one_attached :avatar
-  validates :avatar, attached: true,
+  validates :avatar, presence: true,
                      content_type: ['image/png', 'image/jpg', 'image/jpeg'],
                      size: { less_than: 500.kilobytes, message: 'size should be under 500 kilobytes' }
 
