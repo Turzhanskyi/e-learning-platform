@@ -1,6 +1,6 @@
 - content_for :title do
   e-learning
-  \| 
+  |
   = action_name.humanize
   enrollments
 
@@ -72,6 +72,6 @@
           %td
             - if policy(enrollment).destroy?
               = link_to 'Delete Enrollment', enrollment, method: :delete, data: { confirm: 'Are you sure?' }
-%br
+%p
 != pagy_bootstrap_nav(@pagy)
 %br
