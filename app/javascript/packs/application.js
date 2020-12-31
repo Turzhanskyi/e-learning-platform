@@ -22,9 +22,10 @@ require("jquery-ui-dist/jquery-ui"); // yarn add jquery-ui-dist
 require("jquery") // yarn add jquery
 require("jquery-ui-dist/jquery-ui"); // yarn add jquery-ui-dist
 
-import "../packs/trix-editor-overrides"
+import "../trix-editor-overrides"
 import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
+import "youtube"
 
 $(document).on('turbolinks:load', function(){
     $('.lesson-sortable').sortable({

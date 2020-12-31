@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     end
     resources :enrollments, only: %i[new create]
   end
+  resources :youtube, only: :show
 
   resources :users, only: %i[index edit show update]
 

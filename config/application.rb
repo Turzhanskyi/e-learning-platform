@@ -19,11 +19,13 @@ module Corsego
       end
     end
 
-    # video previews for action_text
-    config.after_initialize do
+    config.to_prepare do
+      # youtube embed
+      ActionText::ContentHelper.allowed_tags << 'iframe'
+
+      # video previews for action_text
       ActionText::ContentHelper.allowed_attributes.add 'style'
       ActionText::ContentHelper.allowed_attributes.add 'controls'
-
       ActionText::ContentHelper.allowed_tags.add 'video'
       ActionText::ContentHelper.allowed_tags.add 'audio'
       ActionText::ContentHelper.allowed_tags.add 'source'
