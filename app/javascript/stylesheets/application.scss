@@ -1,8 +1,13 @@
 @import "./actiontext.scss";
 
-//body { background: #f8f0e6; }
-
+// hide simple_form checkmarks
 .form-control.is-invalid{ background-image: none; }
 .form-control.is-valid{ background-image: none; }
 
+// highlight for drag and drop functionality
 .ui-state-highlight { height: 3em; line-height: 1.2em; background-color: yellow; }
+
+// simple_form input for rich_text_area
+trix-editor.form-control {
+  height: auto;
+}
