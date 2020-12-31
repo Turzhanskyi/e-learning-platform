@@ -23,6 +23,8 @@ require("jquery") // yarn add jquery
 require("jquery-ui-dist/jquery-ui"); // yarn add jquery-ui-dist
 
 import "../packs/trix-editor-overrides"
+import videojs from 'video.js'
+import 'video.js/dist/video-js.css'
 
 $(document).on('turbolinks:load', function(){
     $('.lesson-sortable').sortable({
@@ -45,4 +47,18 @@ $(document).on('turbolinks:load', function(){
             console.log("stop called when finishing sort of cards");
         }
     });
+
+    let videoPlayer = videojs(document.getElementById('my-video'), {
+        controls: true,
+        playbackRates: [0.5, 1, 1.5],
+        autoplay: false,
+        fluid: true,
+        preload: false,
+        liveui: true,
+        responsive: true,
+        loop: false,
+        poster: "https://i.imgur.com/EihmtGG.jpg"
+    })
+    videoPlayer.addClass('video-js')
+    videoPlayer.addClass('vjs-big-play-centered')
 });
