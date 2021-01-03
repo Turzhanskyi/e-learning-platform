@@ -74,7 +74,7 @@ Rails.application.configure do
                                             deliver_with: :deliver,
                                             email_prefix: '[PREFIX] ',
                                             sender_address: %("error" <support@e-learning-turvitan.herokuapp.com>),
-                                            exception_recipients: %w[turzhansky81@gmail.com]
+                                            exception_recipients: %w[cpl.km.ua@gmail.com]
                                           }
 
   # Ignore bad email addresses and do not raise email delivery errors.

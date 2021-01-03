@@ -29,8 +29,7 @@ PublicActivity.enabled = false
                    user: User.find_by(email: 'admin@example.com'),
                    language: Faker::ProgrammingLanguage.name,
                    level: 'Beginner',
-                   # price: Faker::Number.between(from: 1000, to: 20000),
-                   price: 0,
+                   price: Faker::Number.between(from: 0, to: 20_000),
                    approved: true,
                    published: true
                  }])
@@ -44,8 +43,7 @@ end
                    user: User.find_by(email: 'teacher@example.com'),
                    language: Faker::ProgrammingLanguage.name,
                    level: 'Beginner',
-                   # price: Faker::Number.between(from: 1000, to: 20000),
-                   price: 0,
+                   price: Faker::Number.between(from: 0, to: 20_000),
                    approved: true,
                    published: true
                  }])
