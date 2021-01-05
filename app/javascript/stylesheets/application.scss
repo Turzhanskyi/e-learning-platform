@@ -1,8 +1,15 @@
 @import "./actiontext.scss";
 
-body { background: #2a4054; color: #ebedf0; }
-.card, .jumbotron, .list-group-item { color: #2a4054; }
+// shadow for text on landing page
+.text-shadow { text-shadow: 1px 1px black; }
+
+// light background
+body { background: #f8f0e6; }
+
+// for all purple brand elements
 .purple-background { background-color: #563d7c; }
+
+// white background for all tables
 .table { background: white; }
 
 .element {color: green;}
