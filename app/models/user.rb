@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # :lockable, :timeoutable, and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :confirmable,
-         :omniauthable, omniauth_providers: [:google_oauth2]
+         :omniauthable, omniauth_providers: %i[google_oauth2 github]
 
   validate :must_have_a_role, on: :update
 
