@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class TagsController < ApplicationController
+  def index
+    @tags = Tag.all.order(course_tags_count: :desc)
+    authorize @tags
+  end
+
   def create
     @tag = Tag.new(tag_params)
     if @tag.save
@@ -8,6 +13,13 @@ class TagsController < ApplicationController
     else
       render json: { errors: @tag.errors.full_messages }
     end
+  end
+
+  def destroy
+    @tag = Tag.find(params[:id])
+    authorize @tag
+    @tag.destroy
+    redirect_to tags_path, notice: 'Tag was successfully destroyed'
   end
 
   private

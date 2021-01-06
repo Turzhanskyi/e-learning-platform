@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :enrollments, only: %i[new create]
   end
   resources :youtube, only: :show
-  resources :tags, only: :create
+  resources :tags, only: %i[create index destroy]
   resources :users, only: %i[index edit show update]
 
   namespace :charts do

@@ -75,18 +75,27 @@
     %small Learn on your schedule
 
 %p
-
-- if current_user && current_user.enrollments.any?
-  %h2
-    .fa.fa-user-graduate
-    Continue Learning
-  .card-columns
-    - @purchased_courses.each do |course|
-      = render 'courses/course', course: course
-  .text-right
-    = link_to 'All my courses', learning_courses_path
-  %hr
-
+- if current_user
+  - if current_user.enrollments.any?
+    %h2
+      .fa.fa-user-graduate
+      Continue Learning
+    .card-columns
+      - @learning_courses.each do |course|
+        = render 'courses/course', course: course
+    .text-right
+      = link_to 'All that I am learning ', learning_courses_path
+    %hr
+  - if current_user.courses.any?
+    %h2
+      .fa.fa-chalkboard-teacher
+      You are teaching
+    .card-columns
+      - @teaching_courses.each do |course|
+        = render 'courses/course', course: course
+    .text-right
+      = link_to 'All that I am teaching', teaching_courses_path
+    %hr
 %h2
   .fa.fa-chart-line
   Popular courses
@@ -96,7 +105,8 @@
 .text-right
   = link_to 'More popular courses', courses_path(courses_search: {s: 'enrollments_count desc'})
 %hr
-%h2 
+
+%h2
   .fa.fa-star
   Top rated courses
 .card-columns
@@ -104,9 +114,9 @@
     = render 'courses/course', course: course
 .text-right
   = link_to 'Best rated courses', courses_path(courses_search: {s: 'average_rating desc'})
-
 %hr
-%h2 
+
+%h2
   .fa.fa-clock
   Latest courses
 .card-columns
@@ -114,9 +124,20 @@
     = render 'courses/course', course: course
 .text-right
   = link_to 'More recent courses', courses_path(courses_search: {s: 'created_at desc'})
-
 %hr
-%h2 
+
+%h2
+  .fa.fa-tags
+  Most popular tags
+- @popular_tags.each do |tag|
+  = link_to courses_path(courses_search: {course_tags_tag_id_eq: tag.id}) do
+    .badge.badge-info
+      = tag.name
+      %span.badge.badge-light
+        = tag.course_tags_count
+%hr
+
+%h2
   .fa.fa-comment
   What our students have to say
 .card-columns
