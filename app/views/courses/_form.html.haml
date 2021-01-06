@@ -5,7 +5,7 @@
 
     .form-inputs
       = f.input :title, input_html: { autocomplete: 'off' }
-      = f.select :tag_ids, @tags.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
+      = f.select :tag_ids, @tags.all.pluck(:name, :id), {}, { multiple: true, class: "selectize-tags" }
       .row
       - if @course.avatar.attached?
         = image_tag @course.avatar, width: "200px"
