@@ -34,6 +34,8 @@ gem 'sass-rails', '6.0.0'
 gem 'simple_form', '5.0.3'
 gem 'turbolinks', '5.2.1'
 gem 'webpacker', '5.2.1'
+gem 'wicked_pdf', '2.1.0'
+gem 'wkhtmltopdf-binary', '0.12.6.5'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
