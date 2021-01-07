@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to course_lesson_path(@course, @lesson), notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
+        format.json { render :certificate, status: :created, location: @comment }
       else
         format.html { render 'lessons/comments/new' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
