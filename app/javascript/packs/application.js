@@ -24,6 +24,8 @@ require("jquery-ui-dist/jquery-ui"); // yarn add jquery-ui-dist
 
 require("selectize") // yarn add selectize
 
+import "cocoon-js"; // yarn add cocoon-js
+
 import "../trix-editor-overrides"
 import "youtube"
 

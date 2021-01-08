@@ -6,7 +6,7 @@ module Courses
     before_action :set_progress, only: %i[show update]
     before_action :set_course, only: %i[show update finish_wizard_path]
 
-    steps :basic_info, :details, :publish
+    steps :basic_info, :details, :lessons, :publish
 
     def show
       authorize @course, :edit?
@@ -48,7 +48,8 @@ module Courses
 
     def course_params
       params.require(:course).permit(:title, :description, :short_description, :price,
-                                     :published, :language, :level, :avatar, tag_ids: [])
+                                     :published, :language, :level, :avatar,
+                                     tag_ids: [], lessons_attributes: %i[id title content _destroy])
     end
   end
 end
