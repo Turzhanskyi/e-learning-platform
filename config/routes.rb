@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :courses do
+  resources :courses, except: [:edit] do
     get :learning, :pending_review, :teaching, :unapproved, on: :collection
     member do
       get :analytics
