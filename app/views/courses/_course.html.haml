@@ -5,7 +5,7 @@
   - if course.avatar.attached?
     .card-img-top
       = link_to course_path(course) do
-        = image_tag course.avatar, height: "200px", width: "100%"
+        = image_tag course.avatar, height: "auto", width: "100%"
   .card-footer
     %small= simple_format(course.short_description)
   .card-footer
@@ -40,9 +40,6 @@
           Editor
         = link_to analytics_course_path(course), class: 'btn btn-sm btn-info mr-1' do
           .fa.fa-chart-bar
-        - if policy(course).destroy?
-          = link_to course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' do
-            .fa.fa-trash
     - if policy(course).admin_or_owner?
       .card-footer
         - if course.published?
@@ -55,11 +52,14 @@
           .badge.badge-danger unapproved
         - if policy(course).approve?
           - if course.approved?
-            = link_to 'unapprove', unapprove_course_path(course), method: :patch, class: 'btn btn-sm btn-danger'
+            = link_to 'unapprove', unapprove_course_path(course), method: :patch, class: 'btn btn-sm btn-outline-danger'
           - else
-            = link_to 'approve', approve_course_path(course), method: :patch, class: 'btn btn-sm btn-success'
-    - if course.tags.any?
-      .card-footer
-        - course.tags.each do |tag|
-          .badge.badge-info
-            = tag.name
+            = link_to 'approve', approve_course_path(course), method: :patch, class: 'btn btn-sm btn-outline-success'
+        - if policy(course).destroy?
+          = link_to course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' do
+            .fa.fa-trash
+  - if course.tags.any?
+    .card-footer
+      - course.tags.each do |tag|
+        .badge.badge-info
+          = tag.name

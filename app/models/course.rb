@@ -26,9 +26,10 @@ class Course < ApplicationRecord
   has_rich_text :description
 
   has_one_attached :avatar
-  validates :avatar, presence: false,
-                     content_type: ['image/png', 'image/jpg', 'image/jpeg'],
-                     size: { less_than: 500.kilobytes, message: 'size should be under 500 kilobytes' }
+  validates :avatar, presence: true, on: :update
+  validates :avatar,
+            content_type: ['image/png', 'image/jpg', 'image/jpeg'],
+            size: { less_than: 500.kilobytes, message: 'size should be under 500 kilobytes' }
 
   extend FriendlyId
   friendly_id :title, use: :slugged

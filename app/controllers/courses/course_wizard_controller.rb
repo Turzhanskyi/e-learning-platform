@@ -6,7 +6,7 @@ module Courses
     before_action :set_progress, only: %i[show update]
     before_action :set_course, only: %i[show update finish_wizard_path]
 
-    steps :basic_info, :details
+    steps :basic_info, :details, :publish
 
     def show
       authorize @course, :edit?
@@ -20,12 +20,10 @@ module Courses
     def update
       authorize @course, :edit?
       case step
-      when :basic_info
-        @course.update_attributes(course_params)
       when :details
         @tags = Tag.all
-        @course.update_attributes(course_params)
       end
+      @course.update_attributes(course_params)
       render_wizard @course
     end
 
