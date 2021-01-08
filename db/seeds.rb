@@ -54,3 +54,6 @@ Course.find_each { |course| Course.reset_counters(course.id, :lessons) }
 User.find_each { |user| User.reset_counters(user.id, :comments) }
 Lesson.find_each { |lesson| Lesson.reset_counters(lesson.id, :comments) }
 Tag.find_each { |tag| Tag.reset_counters(tag.id, :course_tags) }
+
+# tracked owner
+proc { |controller, _model| controller.current_user }

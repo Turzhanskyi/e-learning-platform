@@ -16,6 +16,10 @@ class User < ApplicationRecord
   has_many :user_lessons, dependent: :nullify
   has_many :comments, dependent: :nullify
 
+  include PublicActivity::Model
+  tracked only: %i[create destroy], owner: :itself
+  # tracked owner: Proc.new{ |controller, model| controller.current_user }
+
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data['email']).first
