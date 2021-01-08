@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Course < ApplicationRecord
-  validates :title, :description, :short_description, :language, :price, :level, presence: true
+  validates :title, :description, :marketing_description, :language, :price, :level, presence: true
   validates :description, length: { minimum: 5 }
-  validates :short_description, length: { maximum: 300 }
+  validates :marketing_description, length: { maximum: 300 }
   validates :title, uniqueness: true, length: { maximum: 70 }
-  validates :price, numericality: { greater_than_or_equal_to: 0 }
+  validates :price, numericality: { greater_than_or_equal_to: 0, less_than: 500_000 }
 
   belongs_to :user, counter_cache: true
   # User.find_each { |user| User.reset_counters(user.id, :courses) }

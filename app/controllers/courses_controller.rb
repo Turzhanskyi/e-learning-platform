@@ -78,8 +78,8 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     authorize @course
-    @course.description = 'Add Curriculum Description'
-    @course.short_description = 'Add Short Description'
+    @course.description = 'Curriculum Description'
+    @course.marketing_description = 'Marketing Description'
     @course.user = current_user
 
     respond_to do |format|

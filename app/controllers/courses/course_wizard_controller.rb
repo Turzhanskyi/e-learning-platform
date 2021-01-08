@@ -47,7 +47,7 @@ module Courses
     end
 
     def course_params
-      params.require(:course).permit(:title, :description, :short_description, :price,
+      params.require(:course).permit(:title, :description, :marketing_description, :price,
                                      :published, :language, :level, :avatar,
                                      tag_ids: [], lessons_attributes: %i[id title content _destroy])
     end
