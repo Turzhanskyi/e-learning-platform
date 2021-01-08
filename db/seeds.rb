@@ -3,7 +3,6 @@
 if User.find_by_email('admin@example.com').nil?
   admin = User.create!(email: 'admin@example.com', password: '123456', password_confirmation: '123456',
                        confirmed_at: Time.now)
-  # admin.skip_confirmation!
   admin.add_role(:admin) unless admin.has_role?(:admin)
 end
 
@@ -37,12 +36,6 @@ Course.all.each do |course|
                      course: course
                    }])
   end
-
-  Enrollment.create!([{
-                       user: User.find_by(email: 'student@example.com'),
-                       course: course,
-                       price: course.price
-                     }])
 end
 
 PublicActivity.enabled = true

@@ -34,6 +34,7 @@ gem 'sass-rails', '6.0.0'
 gem 'simple_form', '5.0.3'
 gem 'turbolinks', '5.2.1'
 gem 'webpacker', '5.2.1'
+gem 'wicked', '1.3.4'
 gem 'wicked_pdf', '2.1.0'
 
 group :development, :test do
