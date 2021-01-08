@@ -4,16 +4,18 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %meta{description: 'Online Learning and Skill sharing platform'}/
-    %meta{keywords: 'online education, e-learning, turvitan, video tutorials, udemy clone'}/
+    %meta{keywords: 'online education, e-learn, turvitan, video tutorials, udemy clone'}/
     %meta{author: 'Vitalii Turzhanskyi'}/
     = favicon_link_tag 'logo.png'
     %title
-      = content_for?(:title) ? yield(:title) : "e-learning"
+      = content_for?(:title) ? yield(:title) : 'e-learn'
     = csrf_meta_tags
     = csp_meta_tag
+
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+
     - if Rails.env.production?
       = render 'layouts/google_analytics'
   %body
@@ -22,6 +24,6 @@
     .container
       %p
       = yield
-    %br
+    %p
     .purple-background.text-light
       = render 'layouts/footer'

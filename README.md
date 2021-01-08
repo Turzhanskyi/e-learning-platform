@@ -1,6 +1,6 @@
-# e-learning-platform <http://www.e-learning-turvitan.ga/>
+# e-learn-turvitan platform <http://www.e-learn-turvitan.ga/>
 
-## [Test application on Heroku](https://e-learning-turvitan.herokuapp.com/)
+## [Test application on Heroku](https://e-learn-turvitan.herokuapp.com/)
 ### admin
 * email: admin@example.com
 * password: 123456
