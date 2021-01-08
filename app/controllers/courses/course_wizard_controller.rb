@@ -9,6 +9,7 @@ module Courses
     steps :basic_info, :details
 
     def show
+      authorize @course, :edit?
       case step
       when :details
         @tags = Tag.all
@@ -17,6 +18,7 @@ module Courses
     end
 
     def update
+      authorize @course, :edit?
       case step
       when :basic_info
         @course.update_attributes(course_params)
@@ -28,6 +30,7 @@ module Courses
     end
 
     def finish_wizard_path
+      authorize @course, :edit?
       course_path(@course)
     end
 
