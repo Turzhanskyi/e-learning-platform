@@ -7,15 +7,13 @@
 .text-shadow { text-shadow: 1px 1px black; }
 
 // light background
-body { background: #f8f0e6; }
+body { background-color: #ede3d5; }
 
 // for all purple brand elements
 .purple-background { background-color: #563d7c; }
 
 // white background for all tables
 .table { background: white; }
-
-.element {color: green;}
 
 // hide simple_form checkmarks
 .form-control.is-invalid{ background-image: none; }
@@ -38,24 +36,43 @@ body { background: #f8f0e6; }
 // highlight for drag and drop functionality
 .ui-state-highlight { height: 3em; line-height: 1.2em; background-color: yellow; }
 
+// custom bootstrap button color
+$custompurple:#563d7c;
+.btn-custom-purple {
+  color: #fff;
+  background-color: $custompurple;
+  border-color: $custompurple;
+}
+
+// header navbar dropdown on top of all other content
+.dropdown {z-index: 9999;}
+
 // simple_form input for rich_text_area
 trix-editor.form-control {
   height: auto;
 }
 
-// footer always on the bottom
+// footer on bottom
 html {
-  position: relative;
-  min-height: 100%;
+  margin: 0;
 }
 body {
-  margin: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-.footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  //height: 200px;
-  width: 100%;
-  overflow: hidden;
+footer {
+  margin-top: auto;
+}
+
+// lesson show - scrollable lessons list
+#scrollable{
+  max-height: 100vh;
+  overflow-y:scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+// embed vimeo size
+.embed-responsive-3by2 {
+  padding-top: 66.66666667%; /* 3:2 Aspect Ratio */
 }
