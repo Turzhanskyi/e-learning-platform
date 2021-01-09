@@ -63,7 +63,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "e_learning_platform_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'e-learn-turvitan.herokuapp.com',
+  config.action_mailer.default_url_options = { host: 'e-learn.turvitan.km.ua',
                                                protocol: 'https' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
@@ -73,7 +73,7 @@ Rails.application.configure do
                                           email: {
                                             deliver_with: :deliver,
                                             email_prefix: '[PREFIX] ',
-                                            sender_address: %("error" <support@e-learn-turvitan.herokuapp.com>),
+                                            sender_address: %("error" <support@e-learn.turvitan.km.ua>),
                                             exception_recipients: %w[turzhansky81@gmail.com]
                                           }
 

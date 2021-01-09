@@ -1,4 +1,4 @@
-# [e-learn-turvitan](http://www.e-learn-turvitan.ga/) platform
+# [e-learn-turvitan](http://e-learn.turvitan.km.ua) platform
 
 ###### Best udemy clone on the market. Set up your online school in minutes!
 
