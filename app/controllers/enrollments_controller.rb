@@ -56,6 +56,7 @@ class EnrollmentsController < ApplicationController
     end
 
     @enrollment = current_user.buy_course(@course)
+    EnrollmentMailer.new_enrollment(@enrollment).deliver_later
     redirect_to course_path(@course), notice: 'You are enrolled!'
   rescue Stripe::CardError => e
     flash[:error] = e.message

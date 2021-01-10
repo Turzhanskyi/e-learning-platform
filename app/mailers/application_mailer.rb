@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class ApplicationMailer < ActionMailer::Base
-  default from: 'support@e-learn.turvitan.km.ua'
+  default from: 'E-learn <support@e-learn.turvitan.km.ua>'
   layout 'mailer'
 end
