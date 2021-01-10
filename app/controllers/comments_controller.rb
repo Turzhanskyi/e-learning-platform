@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        CommentMailer.new_comment(@comment).deliver_later
         format.html { redirect_to course_lesson_path(@course, @lesson), notice: 'Comment was successfully created.' }
         format.json { render :certificate, status: :created, location: @comment }
       else

@@ -50,12 +50,14 @@ class CoursesController < ApplicationController
   def approve
     authorize @course, :approve?
     @course.update_attribute(:approved, true)
+    CourseMailer.approved(@course).deliver_later
     redirect_to @course, notice: 'Course approved and visible!'
   end
 
   def unapprove
     authorize @course, :approve?
     @course.update_attribute(:approved, false)
+    CourseMailer.unapproved(@course).deliver_later
     redirect_to @course, notice: 'Course upapproved and hidden!'
   end
 
