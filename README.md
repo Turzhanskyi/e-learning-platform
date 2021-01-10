@@ -2,9 +2,11 @@
 
 ###### Best udemy clone on the market. Set up your online school in minutes!
 
+### [Certificate of completion course](https://www.udemy.com/certificate/UC-a19cfc62-5e67-435c-b59e-6530104fb9e3/?deal_code=&utm_source=aff-campaign&utm_medium=udemyads&utm_term=Homepage&utm_content=Textlink&utm_campaign=Admitad-default&admitad_uid=9a68e2c3021f8c16cd5667aa8e19e4d8&publisher_id=606171&website_id=701387)
+
 ### [Test application on Heroku](https://e-learn-turvitan.herokuapp.com)
-#### admin
-* email: admin@example.com
+#### test as admin
+* email: teacher@example.com
 * password: 123456
 
 ### Entity-Relationship Diagram
