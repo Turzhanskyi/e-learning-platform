@@ -10,7 +10,7 @@ gem 'aws-sdk-s3', '1.87.0', require: false
 gem 'bootsnap', '1.5.1', require: false
 gem 'chartkick', '3.4.2'
 gem 'cocoon', '1.2.15'
-gem 'devise', '4.7.3'
+gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 gem 'exception_notification', '4.4.3'
 gem 'faker', '2.15.1'
 gem 'friendly_id', '5.4.1'
