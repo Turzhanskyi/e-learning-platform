@@ -63,17 +63,25 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "e_learning_platform_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'e-learn.turvitan.km.ua',
-                                               protocol: 'http' }
+  config.action_mailer.default_url_options = { host: 'e-learn.turvitan.km.ua', protocol: 'http' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address: Rails.application.credentials[:smtp][:address],
+    user_name: Rails.application.credentials[:smtp][:user_name],
+    password: Rails.application.credentials[:smtp][:password],
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 
   Rails.application.config.middleware.use ExceptionNotification::Rack,
                                           email: {
                                             deliver_with: :deliver,
                                             email_prefix: '[PREFIX] ',
-                                            sender_address: %("error" <support@e-learn.turvitan.km.ua>),
+                                            sender_address: %("error" Rails.application.credentials[:mailer][:email]),
                                             exception_recipients: %w[turzhansky81@gmail.com]
                                           }
 
