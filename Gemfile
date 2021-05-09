@@ -50,9 +50,4 @@ group :development do
   gem 'spring', '2.1.1'
   gem 'spring-watcher-listen', '2.0.1'
   gem 'web-console', '4.1.0'
-  gem 'wkhtmltopdf-binary', '0.12.6.5'
-end
-
-group :development do
-  gem 'wkhtmltopdf-heroku', '2.12.6.0'
 end
